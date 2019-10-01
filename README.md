@@ -15,4 +15,4 @@ python country.py [C] [country1 country2 ...]
 Please reach out to me at nithinmanne@gmail.com for queries.
 
 
-All Data is from [The World Bank Group](https://data.worldbank.org/).
+All Data is from [The World Bank Group](https://data.worldbank.org/) and is licensed under [CC BY-4.0](https://datacatalog.worldbank.org/public-licenses#cc-by).
