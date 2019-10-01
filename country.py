@@ -1,11 +1,18 @@
-import sys
-if len(sys.argv) >= 2: C = int(sys.argv[1])
-else: C = 10
-
 def metric(population, area):
     return population/area
 
+C_CONSTANT = 10
+
+import sys
 import csv
+if len(sys.argv) >= 2: 
+    try:
+        C = int(sys.argv[1])
+        g = 1
+    except:
+        C = 0
+        g = 0
+else: C = C_CONSTANT
 
 area = {}
 with open('area.csv', newline='') as csvfile:
@@ -41,20 +48,21 @@ final = list(map(lambda country: print_format.format(country[:40],
                         key=lambda country: metric(population[country], 
                                                    area[country]))))
 
-if C <= 0: C = 1
+if C <= 0: C = 0
 elif C > len(countries): C = len(countries)
 
-print('Big To Small')
-print(print_format.format(*label_format))
-print(*final[:-C-1:-1], sep='\n', end='\n\n')
-
-print('Small To Big')
-print(print_format.format(*label_format))
-print(*final[:C], sep='\n', end='\n\n')
-
-if len(sys.argv) >= 3:
-    print('Custom')
+if C:
+    print('Big', 'To Small'*(C>1))
     print(print_format.format(*label_format))
-    for arg in sys.argv[2:]:
+    print(*final[:-C-1:-1], sep='\n', end='\n\n')
+
+    print('Small', 'To Big'*(C>1))
+    print(print_format.format(*label_format))
+    print(*final[:C], sep='\n', end='\n\n')
+
+if len(sys.argv) >= g+2:
+    print('Custom Printing')
+    print(print_format.format(*label_format))
+    for arg in sys.argv[g+1:]:
         for country in final:
             if arg in country: print(country)
