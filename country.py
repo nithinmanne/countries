@@ -12,7 +12,9 @@ if len(sys.argv) >= 2:
     except:
         C = 0
         g = 0
-else: C = C_CONSTANT
+else:
+    C = C_CONSTANT
+    g = 0
 
 area = {}
 with open('area.csv', newline='') as csvfile:
